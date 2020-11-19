@@ -1,38 +1,41 @@
-<html>
-<head>
-<title>ITF Lab</title>
-</head>
-<body>
-<?php
-$conn = mysqli_init();
-mysqli_real_connect($conn, 'home-work.mysql.database.azure.com', 'qwertyuiop@home-work', 'Asdfghjkl11', 'itf13', 3306);
-if (mysqli_connect_errno($conn))
-{
-    die('Failed to connect to MySQL: '.mysqli_connect_error());
-}
-$res = mysqli_query($conn, 'SELECT * FROM guestbook');
+<? php
+echo '<html>';
+echo '<head>';
+echo '<title>ITF Lab</title>';
+echo '</head>';
+echo '<body>';
+echo '<?php';
+echo '$conn = mysqli_init();';
+echo 'mysqli_real_connect($conn, 'home-work.mysql.database.azure.com', 'qwertyuiop@home-work', 'Asdfghjkl11', 'itf13', 3306);';
+echo 'if (mysqli_connect_errno($conn))';
+echo '{';
+echo 'die('Failed to connect to MySQL: '.mysqli_connect_error());';
+echo '}';
+echo '$res = mysqli_query($conn, 'SELECT * FROM guestbook');';
+echo '?>';
+echo '<table width="600" border="1">';
+echo '<tr>';
+echo '<th width="100"> <div align="center">Name</div></th>';
+echo '<th width="350"> <div align="center">Comment </div></th>';
+echo '<th width="150"> <div align="center">Link </div></th>';
+echo '</tr>';
+echo '<?php';
+echo 'while($Result = mysqli_fetch_array($res))';
+echo '{';
+echo '?>';
+echo '<tr>';
+echo '<td><?php echo $Result['Name'];?></div></td>';
+echo '<td><?php echo $Result['Comment'];?></td>';
+echo '<td><?php echo $Result['Link'];?></td>';
+echo '</tr>';
+echo '<?php';
+echo '}';
+echo '?>';
+echo '</table>';
+echo '<?php';
+echo 'mysqli_close($conn);';
+echo '?>';
+echo '</body>';
+echo '</html>';
+echo '';
 ?>
-<table width="600" border="1">
-  <tr>
-    <th width="100"> <div align="center">Name</div></th>
-    <th width="350"> <div align="center">Comment </div></th>
-    <th width="150"> <div align="center">Link </div></th>
-  </tr>
-<?php
-while($Result = mysqli_fetch_array($res))
-{
-?>
-  <tr>
-    <td><?php echo $Result['Name'];?></div></td>
-    <td><?php echo $Result['Comment'];?></td>
-    <td><?php echo $Result['Link'];?></td>
-  </tr>
-<?php
-}
-?>
-</table>
-<?php
-mysqli_close($conn);
-?>
-</body>
-</html>
